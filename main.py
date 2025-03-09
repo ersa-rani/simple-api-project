@@ -4,6 +4,13 @@ import os
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 
+load_dotenv()
+
+print(os.getenv("FASTAPI_SECRET_KEY"))  # To check if the variable is loaded
+
+
+app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Allow all origins (or specify allowed domains)
@@ -11,14 +18,6 @@ app.add_middleware(
     allow_methods=["*"],  # Allow all HTTP methods
     allow_headers=["*"],  # Allow all headers
 )
-
-
-load_dotenv()
-
-print(os.getenv("FASTAPI_SECRET_KEY"))  # To check if the variable is loaded
-
-
-app = FastAPI()
 
 # Load API key from Railway environment variables
 API_KEY = os.getenv("FASTAPI_SECRET_KEY")
